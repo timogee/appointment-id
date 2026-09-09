@@ -1,0 +1,45 @@
+{
+  "name": "barberkuy-booking",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:reset": "tsx scripts/migrate.ts --reset",
+    "db:seed": "tsx scripts/seed.ts",
+    "repl": "tsx scripts/repl.ts",
+    "expire-holds": "tsx scripts/expire-holds.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "check": "npm run format && npm run typecheck && npm run lint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.124.0",
+    "drizzle-orm": "^0.45.2",
+    "next": "^15.5.25",
+    "pg": "^8.23.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "autoprefixer": "^10.5.5",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "postcss": "^8.5.28",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
+  }
+}
