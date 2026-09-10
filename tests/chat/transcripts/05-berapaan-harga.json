@@ -1,0 +1,31 @@
+{
+  "name": "berapaan sih potong sama clara",
+  "now": "2026-09-09T07:00:00Z",
+  "phone": "628111000305",
+  "turns": [
+    {
+      "user": "berapaan sih potong sama clara",
+      "script": [
+        {
+          "toolCalls": [
+            {
+              "name": "checkAvailability",
+              "arguments": {
+                "staffName": "Clara",
+                "serviceName": "Potong Rambut Pria",
+                "dateOrRange": "2026-09-09"
+              }
+            }
+          ]
+        },
+        {
+          "afterTool": "checkAvailability",
+          "text": "Potong sama Clara Rp 65.000 kak."
+        }
+      ],
+      "expectTools": [{ "name": "checkAvailability", "arguments": { "staffName": "Clara" } }],
+      "expectHandoff": false,
+      "comment": "A price QUESTION is answered from a tool result. It is not an escalation — only an attempt to CHANGE the price is."
+    }
+  ]
+}
