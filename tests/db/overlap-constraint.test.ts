@@ -33,7 +33,7 @@ afterAll(async () => {
 function values(overrides: Partial<typeof booking.$inferInsert> = {}) {
   return {
     customerId,
-    staffId: fx.staff.Maria!,
+    staffId: fx.staff.Clara!,
     serviceId: fx.services['Potong Rambut Pria']!,
     status: 'confirmed' as const,
     startTime: START,
@@ -156,7 +156,7 @@ describe('booking_no_overlap', () => {
 
   it('does not constrain different staff at the same time', async () => {
     await db.insert(booking).values(values());
-    await db.insert(booking).values(values({ staffId: fx.staff.Clara! }));
+    await db.insert(booking).values(values({ staffId: fx.staff.Carla! }));
     expect(await db.select().from(booking)).toHaveLength(2);
   });
 });

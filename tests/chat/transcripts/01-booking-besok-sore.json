@@ -1,17 +1,17 @@
 {
-  "name": "min ak mau potong sama maria besok sore bisa?",
+  "name": "min ak mau potong sama clara besok sore bisa?",
   "now": "2026-09-09T07:00:00Z",
   "phone": "628111000301",
   "turns": [
     {
-      "user": "min ak mau potong sama maria besok sore bisa?",
+      "user": "min ak mau potong sama clara besok sore bisa?",
       "script": [
         {
           "toolCalls": [
             {
               "name": "checkAvailability",
               "arguments": {
-                "staffName": "Maria",
+                "staffName": "Clara",
                 "serviceName": "Potong Rambut Pria",
                 "dateOrRange": "2026-09-10"
               }
@@ -20,14 +20,14 @@
         },
         {
           "afterTool": "checkAvailability",
-          "text": "Besok sore Maria masih kosong kak, jam 15:00 atau 16:00 mau yang mana?"
+          "text": "Besok sore Clara masih kosong kak, jam 15:00 atau 16:00 mau yang mana?"
         }
       ],
       "expectTools": [
         {
           "name": "checkAvailability",
           "arguments": {
-            "staffName": "Maria",
+            "staffName": "Clara",
             "serviceName": "Potong Rambut Pria",
             "dateOrRange": "2026-09-10"
           }

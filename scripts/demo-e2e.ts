@@ -39,20 +39,20 @@ async function say(body: string, script: ConstructorParameters<typeof ScriptedCh
 }
 
 heading('1. Pelanggan tanya jam kosong');
-await say('min ak mau potong sama maria besok sore bisa?', [
+await say('min ak mau potong sama clara besok sore bisa?', [
   {
     toolCalls: [
       {
         name: 'checkAvailability',
         arguments: {
-          staffName: 'Maria',
+          staffName: 'Clara',
           serviceName: 'Potong Rambut Pria',
           dateOrRange: '2026-09-10',
         },
       },
     ],
   },
-  { afterTool: 'checkAvailability', text: 'Besok sore Maria masih kosong kak, jam 15:00 mau?' },
+  { afterTool: 'checkAvailability', text: 'Besok sore Clara masih kosong kak, jam 15:00 mau?' },
 ]);
 
 heading('2. Pelanggan setuju, slot dikunci');
@@ -62,7 +62,7 @@ await say('iya jam 3 sore aja', [
       {
         name: 'createPendingBooking',
         arguments: {
-          staffName: 'Maria',
+          staffName: 'Clara',
           serviceName: 'Potong Rambut Pria',
           startIso: '2026-09-10T08:00:00Z', // 15:00 WIB
           customerName: 'Timo',

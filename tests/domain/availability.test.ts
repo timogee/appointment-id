@@ -149,16 +149,16 @@ describe('getAvailableSlots', () => {
 });
 
 describe('suggestAlternatives', () => {
-  const maria = {
-    staffId: 'maria',
-    staffName: 'Maria',
+  const clara = {
+    staffId: 'clara',
+    staffName: 'Clara',
     workingWindows: [window(KAMIS, '10:00', '12:00')],
     busy: [{ start: at(KAMIS, '10:00'), end: at(KAMIS, '10:55') }],
     ...POTONG,
   };
-  const clara = {
-    staffId: 'clara',
-    staffName: 'Clara',
+  const carla = {
+    staffId: 'carla',
+    staffName: 'Carla',
     workingWindows: [window(KAMIS, '10:00', '12:00')],
     busy: [],
     ...POTONG,
@@ -166,39 +166,39 @@ describe('suggestAlternatives', () => {
 
   it('offers other times with the requested staff member', () => {
     const alt = suggestAlternatives({
-      perStaff: [maria, clara],
-      preferredStaffId: 'maria',
+      perStaff: [clara, carla],
+      preferredStaffId: 'clara',
       wantedStart: at(KAMIS, '10:00'),
     });
-    expect(alt.sameStaffOtherTimes.every((e) => e.staffName === 'Maria')).toBe(true);
+    expect(alt.sameStaffOtherTimes.every((e) => e.staffName === 'Clara')).toBe(true);
     expect(times(alt.sameStaffOtherTimes.map((e) => e.slot))).toContain('11:00');
   });
 
   it('offers the same time with a different qualified staff member', () => {
     const alt = suggestAlternatives({
-      perStaff: [maria, clara],
-      preferredStaffId: 'maria',
+      perStaff: [clara, carla],
+      preferredStaffId: 'clara',
       wantedStart: at(KAMIS, '10:00'),
     });
     expect(alt.sameTimeOtherStaff).toHaveLength(1);
-    expect(alt.sameTimeOtherStaff[0]!.staffName).toBe('Clara');
+    expect(alt.sameTimeOtherStaff[0]!.staffName).toBe('Carla');
     expect(utcToJakartaTime(alt.sameTimeOtherStaff[0]!.slot.start)).toBe('10:00');
   });
 
   it('never re-offers the exact time the customer could not get', () => {
     const alt = suggestAlternatives({
-      perStaff: [clara],
-      preferredStaffId: 'clara',
+      perStaff: [carla],
+      preferredStaffId: 'carla',
       wantedStart: at(KAMIS, '10:00'),
     });
     expect(times(alt.sameStaffOtherTimes.map((e) => e.slot))).not.toContain('10:00');
   });
 
   it('returns no same-time option when nobody else is free then', () => {
-    const busyClara = { ...clara, busy: [{ start: at(KAMIS, '10:00'), end: at(KAMIS, '10:55') }] };
+    const busyCarla = { ...carla, busy: [{ start: at(KAMIS, '10:00'), end: at(KAMIS, '10:55') }] };
     const alt = suggestAlternatives({
-      perStaff: [maria, busyClara],
-      preferredStaffId: 'maria',
+      perStaff: [clara, busyCarla],
+      preferredStaffId: 'clara',
       wantedStart: at(KAMIS, '10:00'),
     });
     expect(alt.sameTimeOtherStaff).toEqual([]);

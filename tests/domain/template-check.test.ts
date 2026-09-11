@@ -31,7 +31,7 @@ describe('template', () => {
   it('books a slot and can assert on both the row and the notification', async () => {
     const { booking: row } = await createPendingBooking({
       customerPhone: '628111000999',
-      staffId: fx.staff.Maria!,
+      staffId: fx.staff.Clara!,
       serviceId: fx.services['Potong Rambut Pria']!,
       startTime: new Date('2026-09-10T04:00:00Z'),
       now: new Date('2026-09-09T07:00:00Z'),

@@ -1,10 +1,10 @@
 {
-  "name": "hmm cocoknya sama maria, bisanya sore juga",
+  "name": "hmm cocoknya sama clara, bisanya sore juga",
   "now": "2026-09-09T07:00:00Z",
   "phone": "628111000302",
   "setup": {
     "fillDay": {
-      "staff": "Maria",
+      "staff": "Clara",
       "date": "2026-09-10",
       "fromTime": "15:00",
       "toTime": "18:30"
@@ -12,14 +12,14 @@
   },
   "turns": [
     {
-      "user": "hmm cocoknya sama maria, bisanya sore juga",
+      "user": "hmm cocoknya sama clara, bisanya sore juga",
       "script": [
         {
           "toolCalls": [
             {
               "name": "suggestAlternatives",
               "arguments": {
-                "staffName": "Maria",
+                "staffName": "Clara",
                 "serviceName": "Potong Rambut Pria",
                 "dateOrRange": "2026-09-09"
               }
@@ -28,7 +28,7 @@
         },
         {
           "afterTool": "suggestAlternatives",
-          "text": "Sore Maria udah penuh kak. Aku carikan jam lain sama Maria ya."
+          "text": "Sore Clara udah penuh kak. Aku carikan jam lain sama Clara ya."
         }
       ],
       "expectTools": [{ "name": "suggestAlternatives" }],

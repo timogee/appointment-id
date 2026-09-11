@@ -41,7 +41,7 @@ afterAll(async () => {
 
 const potong = () => ({
   customerPhone: PHONE,
-  staffId: fx.staff.Maria!,
+  staffId: fx.staff.Clara!,
   serviceId: fx.services['Potong Rambut Pria']!,
   startTime: START,
   actor: { kind: 'customer' as const, phone: PHONE },
@@ -77,11 +77,11 @@ describe('createPendingBooking', () => {
   });
 
   it('refuses a staff member not qualified for the service', async () => {
-    // Bagas does not do Cat Rambut.
+    // Karyn does not do Cat Rambut.
     await expect(
       createPendingBooking({
         ...potong(),
-        staffId: fx.staff.Bagas!,
+        staffId: fx.staff.Karyn!,
         serviceId: fx.services['Cat Rambut']!,
       }),
     ).rejects.toThrow(DomainError);
@@ -149,7 +149,7 @@ describe('walk-ins', () => {
     const now = new Date('2026-09-10T05:00:00Z');
     const row = await createWalkIn({
       customerPhone: '628999',
-      staffId: fx.staff.Clara!,
+      staffId: fx.staff.Carla!,
       serviceId: fx.services['Potong Rambut Pria']!,
       actor: { kind: 'owner' },
       now,
@@ -163,7 +163,7 @@ describe('walk-ins', () => {
     const now = new Date('2026-09-10T05:00:00Z');
     const params = {
       customerPhone: '628999',
-      staffId: fx.staff.Clara!,
+      staffId: fx.staff.Carla!,
       serviceId: fx.services['Potong Rambut Pria']!,
       actor: { kind: 'owner' as const },
       now,

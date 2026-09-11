@@ -11,7 +11,7 @@
             {
               "name": "checkAvailability",
               "arguments": {
-                "staffName": "Maria",
+                "staffName": "Clara",
                 "serviceName": "Potong Rambut Pria",
                 "dateOrRange": "2026-09-12"
               }

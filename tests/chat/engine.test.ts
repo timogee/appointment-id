@@ -72,7 +72,7 @@ describe('the anti-hallucination guard', () => {
             {
               name: 'checkAvailability',
               arguments: {
-                staffName: 'Maria',
+                staffName: 'Clara',
                 serviceName: 'Potong Rambut Pria',
                 dateOrRange: '2026-09-10',
               },

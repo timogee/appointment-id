@@ -86,7 +86,7 @@ export async function loadStaffOrThrow(q: Queryer, staffId: string) {
   return row;
 }
 
-/** Staff qualified for a service, active only. Bagas is absent for Cat Rambut. */
+/** Staff qualified for a service, active only. Karyn is absent for Cat Rambut. */
 export async function loadQualifiedStaff(q: Queryer, serviceId: string) {
   return q
     .select({ id: staff.id, name: staff.name })

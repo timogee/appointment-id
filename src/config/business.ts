@@ -7,7 +7,7 @@ export const BUSINESS = {
   name: 'Barberkuy Kemang',
   shortName: 'Barberkuy',
   address: 'Jl. Kemang Raya No. 42, Jakarta Selatan',
-  phone: '628111222333',
+  phone: '6285117123469',
   timezone: 'Asia/Jakarta',
   locale: 'id-ID',
 } as const;
@@ -30,7 +30,7 @@ export const ALTERNATIVE_SEARCH_DAYS = 7;
 /** Where the customer sends the DP. Manual transfer is the real product here. */
 export const PAYMENT_DETAILS = {
   bankName: 'BCA',
-  accountNumber: '1234567890',
+  accountNumber: '6265122781',
   accountHolder: 'Barberkuy Kemang',
   qrisImagePath: '/qris.png',
 } as const;
@@ -49,38 +49,38 @@ export const OPENING_HOURS: ReadonlyArray<{
   { dayOfWeek: 0, open: '09:00', close: '21:00' }, // Minggu
 ];
 
-export const SEED_STAFF = ['Maria', 'Clara', 'Bagas'] as const;
+export const SEED_STAFF = ['Clara', 'Carla', 'Karyn'] as const;
 
 export const SEED_SERVICES: ReadonlyArray<{
   name: string;
   durationMinutes: number;
   priceRupiah: number;
-  /** Staff who can perform it. Bagas does not do Cat Rambut. */
+  /** Staff who can perform it. Karyn does not do Cat Rambut. */
   staff: ReadonlyArray<(typeof SEED_STAFF)[number]>;
 }> = [
   {
     name: 'Potong Rambut Pria',
     durationMinutes: 45,
     priceRupiah: 65_000,
-    staff: ['Maria', 'Clara', 'Bagas'],
+    staff: ['Clara', 'Carla', 'Karyn'],
   },
   {
     name: 'Potong + Keramas',
     durationMinutes: 60,
     priceRupiah: 90_000,
-    staff: ['Maria', 'Clara', 'Bagas'],
+    staff: ['Clara', 'Carla', 'Karyn'],
   },
   {
     name: 'Cukur Jenggot',
     durationMinutes: 30,
     priceRupiah: 45_000,
-    staff: ['Maria', 'Clara', 'Bagas'],
+    staff: ['Clara', 'Carla', 'Karyn'],
   },
   {
     name: 'Potong Anak',
     durationMinutes: 30,
     priceRupiah: 50_000,
-    staff: ['Maria', 'Clara', 'Bagas'],
+    staff: ['Clara', 'Carla', 'Karyn'],
   },
-  { name: 'Cat Rambut', durationMinutes: 90, priceRupiah: 250_000, staff: ['Maria', 'Clara'] },
+  { name: 'Cat Rambut', durationMinutes: 90, priceRupiah: 250_000, staff: ['Clara', 'Carla'] },
 ];

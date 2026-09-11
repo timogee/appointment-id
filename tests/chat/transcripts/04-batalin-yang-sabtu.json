@@ -4,7 +4,7 @@
   "phone": "628111000304",
   "setup": {
     "bookings": [
-      { "staff": "Maria", "service": "Potong Rambut Pria", "startIso": "2026-09-12T03:00:00Z" }
+      { "staff": "Clara", "service": "Potong Rambut Pria", "startIso": "2026-09-12T03:00:00Z" }
     ]
   },
   "turns": [

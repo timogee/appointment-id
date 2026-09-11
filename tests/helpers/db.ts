@@ -19,12 +19,12 @@ export interface Fixture {
 }
 
 /**
- * Maria and Clara do everything; Bagas does not do Cat Rambut. Mirrors the real
+ * Clara and Carla do everything; Karyn does not do Cat Rambut. Mirrors the real
  * seed in scripts/seed.ts so tests exercise the same asymmetry production has.
  */
 export async function seedFixture(): Promise<Fixture> {
   const staffIds: Record<string, string> = {};
-  for (const name of ['Maria', 'Clara', 'Bagas']) {
+  for (const name of ['Clara', 'Carla', 'Karyn']) {
     const [row] = await db.insert(staff).values({ name }).returning();
     staffIds[name] = row!.id;
   }
@@ -35,9 +35,9 @@ export async function seedFixture(): Promise<Fixture> {
       name: 'Potong Rambut Pria',
       durationMinutes: 45,
       priceRupiah: 65_000,
-      staff: ['Maria', 'Clara', 'Bagas'],
+      staff: ['Clara', 'Carla', 'Karyn'],
     },
-    { name: 'Cat Rambut', durationMinutes: 90, priceRupiah: 250_000, staff: ['Maria', 'Clara'] },
+    { name: 'Cat Rambut', durationMinutes: 90, priceRupiah: 250_000, staff: ['Clara', 'Carla'] },
   ];
   for (const d of defs) {
     const [row] = await db
