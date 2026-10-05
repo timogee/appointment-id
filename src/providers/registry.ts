@@ -14,10 +14,12 @@ import type { PaymentProvider } from './payment/types';
 import type { ChatModel } from './chat-model/types';
 import type { InboundAdapter } from './inbound/types';
 import { ConsoleNotifier } from './notifier/console';
+import { WhatsAppCloudNotifier } from './notifier/whatsapp-cloud';
 import { ManualTransferProvider } from './payment/manual-transfer';
 import { AnthropicChatModel } from './chat-model/anthropic';
 import { ScriptedChatModel } from './chat-model/scripted';
 import { CliInboundAdapter } from './inbound/cli';
+import { WhatsAppWebhookAdapter } from './inbound/whatsapp-webhook';
 
 export interface Providers {
   notifier: Notifier;
@@ -33,7 +35,16 @@ function buildNotifier(): Notifier {
   switch (process.env.NOTIFIER ?? 'console') {
     case 'console':
       return new ConsoleNotifier();
-    // case 'whatsapp_cloud': return new WhatsAppCloudNotifier(...)  <- one new file
+    case 'whatsapp_cloud': {
+      const token = process.env.WHATSAPP_TOKEN;
+      const phoneId = process.env.WHATSAPP_PHONE_NUMBER_ID;
+      if (!token || !phoneId) {
+        throw new Error(
+          'NOTIFIER=whatsapp_cloud needs WHATSAPP_TOKEN and WHATSAPP_PHONE_NUMBER_ID.',
+        );
+      }
+      return new WhatsAppCloudNotifier(token, phoneId);
+    }
     default:
       throw new Error(`Unknown NOTIFIER: ${process.env.NOTIFIER}`);
   }
@@ -66,7 +77,16 @@ function buildInbound(): InboundAdapter {
   switch (process.env.INBOUND_ADAPTER ?? 'cli') {
     case 'cli':
       return new CliInboundAdapter(process.env.CLI_PHONE ?? '628123456789');
-    // case 'whatsapp_webhook': return new WhatsAppWebhookAdapter(...)  <- one new file
+    case 'whatsapp_webhook': {
+      const verifyToken = process.env.WHATSAPP_VERIFY_TOKEN;
+      const appSecret = process.env.WHATSAPP_APP_SECRET;
+      if (!verifyToken || !appSecret) {
+        throw new Error(
+          'INBOUND_ADAPTER=whatsapp_webhook needs WHATSAPP_VERIFY_TOKEN and WHATSAPP_APP_SECRET.',
+        );
+      }
+      return new WhatsAppWebhookAdapter(verifyToken, appSecret);
+    }
     default:
       throw new Error(`Unknown INBOUND_ADAPTER: ${process.env.INBOUND_ADAPTER}`);
   }

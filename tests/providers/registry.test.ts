@@ -10,6 +10,8 @@ import { ManualTransferProvider } from '../../src/providers/payment/manual-trans
 import { ScriptedChatModel } from '../../src/providers/chat-model/scripted';
 import { AnthropicChatModel } from '../../src/providers/chat-model/anthropic';
 import { CliInboundAdapter } from '../../src/providers/inbound/cli';
+import { WhatsAppCloudNotifier } from '../../src/providers/notifier/whatsapp-cloud';
+import { WhatsAppWebhookAdapter } from '../../src/providers/inbound/whatsapp-webhook';
 
 const saved = { ...process.env };
 
@@ -54,6 +56,38 @@ describe('defaults', () => {
     process.env.NOTIFIER = 'carrier-pigeon';
     resetProviders();
     expect(() => getProviders()).toThrow(/Unknown NOTIFIER/);
+  });
+
+  it('builds the real WhatsApp notifier when credentials are present', () => {
+    process.env.NOTIFIER = 'whatsapp_cloud';
+    process.env.WHATSAPP_TOKEN = 'token';
+    process.env.WHATSAPP_PHONE_NUMBER_ID = 'phone-id';
+    resetProviders();
+    expect(getProviders().notifier).toBeInstanceOf(WhatsAppCloudNotifier);
+  });
+
+  it('fails loudly when whatsapp_cloud is chosen without credentials', () => {
+    process.env.NOTIFIER = 'whatsapp_cloud';
+    delete process.env.WHATSAPP_TOKEN;
+    delete process.env.WHATSAPP_PHONE_NUMBER_ID;
+    resetProviders();
+    expect(() => getProviders()).toThrow(/WHATSAPP_TOKEN/);
+  });
+
+  it('builds the webhook inbound adapter when credentials are present', () => {
+    process.env.INBOUND_ADAPTER = 'whatsapp_webhook';
+    process.env.WHATSAPP_VERIFY_TOKEN = 'verify';
+    process.env.WHATSAPP_APP_SECRET = 'secret';
+    resetProviders();
+    expect(getProviders().inbound).toBeInstanceOf(WhatsAppWebhookAdapter);
+  });
+
+  it('fails loudly when whatsapp_webhook is chosen without credentials', () => {
+    process.env.INBOUND_ADAPTER = 'whatsapp_webhook';
+    delete process.env.WHATSAPP_VERIFY_TOKEN;
+    delete process.env.WHATSAPP_APP_SECRET;
+    resetProviders();
+    expect(() => getProviders()).toThrow(/WHATSAPP_VERIFY_TOKEN/);
   });
 });
 
